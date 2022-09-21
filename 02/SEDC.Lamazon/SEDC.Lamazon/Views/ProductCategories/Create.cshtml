@@ -1,0 +1,19 @@
+﻿@model ProductCategoryViewModel
+
+<h2>Create Product Category</h2>
+<hr />
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    @Html.HiddenFor(x => x.Id)
+
+    <div>
+        @Html.LabelFor(x => x.Name, "Name", new { @class = "control-label" })
+        @Html.EditorFor(x => x.Name, new { htmlAttributes = new { @class = "form-control" } })
+    </div>
+    <div class="mt-5 float-end">
+        <a class="btn btn-default" asp-controller="ProductCategories" asp-action="Index">Cancel</a>
+        <button class="ms-2 btn btn-success" type="submit">Save</button>
+    </div>
+}
