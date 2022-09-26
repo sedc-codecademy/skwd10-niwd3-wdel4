@@ -1,0 +1,15 @@
+﻿@model List<ProductCategoryViewModel>
+
+<h2>Product Categories</h2>
+
+<a class="mt-5" asp-controller="ProductCategories" asp-action="Create">Create product category</a>
+<hr/>
+
+@foreach (var productCategory in Model)
+{
+    <ul style="list-style-type:none;">
+        <li>Product Category Name: @productCategory.Name</li>
+        <li><a asp-controller="ProductCategories" asp-action="Edit" asp-route-id="@productCategory.Id">Edit</a></li>
+        <li><a asp-controller="ProductCategories" asp-action="Delete" asp-route-id="@productCategory.Id">Delete</a></li>
+    </ul>
+}
