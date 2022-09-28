@@ -1,0 +1,119 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Lamazon CMS</title>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.2/css/all.css">
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://cdn.datatables.net/v/dt/dt-1.12.1/datatables.min.css" />
+    <link rel="stylesheet" href="~/css/admin-site.css" />
+</head>
+<body>
+    <header>
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+            <div class="container">
+                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">Lamazon CMS</a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="navbar-collapse collapse justify-content-between">
+                    <ul class="navbar-nav mr-auto">
+                    </ul>
+
+                    <ul class="navbar-nav">
+                        @if (User.Identity.IsAuthenticated)
+                        {
+                            <li class="nav-item dropdown">
+                                <a class="nav-link header-nav" href="javascript:;" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="text-transform:none !important">
+                                    <i class="fas fa-user mr-1"></i>@User.DisplayName()
+                                </a>
+                                <div class="dropdown-menu dropdown-menu-right">
+                                    @if (User.IsAdmin())
+                                    {
+                                        <a class="dropdown-item" asp-area="">Lamazon Web</a>
+                                    }
+                                    <a class="dropdown-item" asp-area="" asp-controller="Users" asp-action="Logout">Logout</a>
+                                </div>
+                            </li>
+                        }
+                        else
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Users" asp-action="Login">Login</a>
+                            </li>
+                        }
+                    </ul>
+                </div>
+            </div>
+        </nav>
+
+        <div class="sidebar-fixed position-fixed">
+            <img src="~/images/lamazon.svg" alt="">
+            <div class="list-group">
+                <a asp-area="Administration" asp-controller="Home" class="list-group-item list-group-item-action">
+                    <i class="fas fas fa-home mr-3"></i>Home
+                </a>
+                <a asp-area="Administration" asp-controller="ProductCategories" class="list-group-item list-group-item-action">
+                    <i class="fa fa-tags mr-3"></i>Product Categories
+                </a>
+                <a asp-area="Administration" asp-controller="Products" class="list-group-item list-group-item-action">
+                    <i class="fa fa-tag mr-3"></i>Products
+                </a>
+                <a asp-area="Administration" asp-controller="Orders" class="list-group-item list-group-item-action">
+                    <i class="fa fa-shopping-cart mr-3"></i>Orders
+                </a>
+                <a asp-area="Administration" asp-controller="Invoices" class="list-group-item list-group-item-action">
+                    <i class="fa fa-file mr-3"></i>Invoices
+                </a>
+                <a asp-area="Administration" asp-controller="Users" class="list-group-item list-group-item-action">
+                    <i class="fa fa-user mr-3"></i>Users
+                </a>
+            </div>
+        </div>
+    </header>
+    <div class="container">
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div>
+
+    <footer class="border-top footer text-muted">
+        <div class="container">
+            &copy; 2022 - SEDC.Lamazon - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+        </div>
+    </footer>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.datatables.net/v/dt/dt-1.12.1/datatables.min.js"></script>
+    <script src="~/js/admin-site.js" asp-append-version="true"></script>
+    <script>
+        var dataTablesLanguage = {
+            "decimal": "",
+            "emptyTable": "No data available in table",
+            "info": "Прикажани _START_ до _END_ од _TOTAL_ вкупно записи",
+            "infoEmpty": "Showing 0 to 0 of 0 entries",
+            "infoFiltered": "(filtered from _MAX_ total entries)",
+            "infoPostFix": "",
+            "thousands": ",",
+            "lengthMenu": "Прикажи _MENU_ записи",
+            "loadingRecords": "Loading...",
+            "processing": "",
+            "search": "Search:",
+            "zeroRecords": "No matching records found",
+            "paginate": {
+                "first": "First",
+                "last": "Last",
+                "next": "Next",
+                "previous": "Previous"
+            },
+            "aria": {
+                "sortAscending": ": activate to sort column ascending",
+                "sortDescending": ": activate to sort column descending"
+            }
+        };
+    </script>
+    @RenderSection("Scripts", required: false)
+</body>
+</html>
