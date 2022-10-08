@@ -1,0 +1,31 @@
+﻿@model IEnumerable<OrderLineItemViewModel>
+
+<h2>Shopping Cart</h2>
+
+@using (Html.BeginForm())
+{
+    @foreach (var orderLineItem in Model)
+    {
+        <div class="row order-item">
+            <div class="col-md-3">
+                <img class="order-item-image" src="@orderLineItem.ProductImage" />
+            </div>
+            <div class="col-md-6">
+                <p class="order-item-name">@orderLineItem.ProductName</p>
+                <p class="order-item-description">@orderLineItem.ProductDescription</p>
+            </div>
+            <div class="col-md-3 text-center">
+                <p>Qty</p>
+                <p class="order-item-qty">@orderLineItem.Quantity</p>
+            </div>
+        </div>
+    }
+
+    <div class="row">
+        <div class="col-md-12 mt-5 mb-5" >
+            <div class="w-100 text-center">
+                <button class="btn btn-create-order btn-success" type="submit">Create Order</button>
+            </div>
+        </div>
+    </div>
+}
